@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Character Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ff7f7f; 
+        }
+
+        .container {
+            background-color: #ffb3b3;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .textarea-container {
+            background-color: rgb(239, 238, 222);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            resize: none;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: space-between;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .count-item {
+            background-color: rgb(179, 255, 240);
+            padding: 8px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes countUpdate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .count-update {
+            animation: countUpdate 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-time Character Counter</h1>
+        <div class="textarea-container">
+            <textarea 
+                id="text-input" 
+                placeholder="Type your text here..."
+                autofocus
+            ></textarea>
+        </div>
+        <div class="counter">
+            <div class="count-item" id="char-count">
+                Characters: 0
+            </div>
+            <div class="count-item" id="word-count">
+                Words: 0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('text-input');
+        const charCount = document.getElementById('char-count');
+        const wordCount = document.getElementById('word-count');
+
+        function updateCounts() {
+            const text = textInput.value;
+            const characters = text.length;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+
+            charCount.textContent = `Characters: ${characters}`;
+            wordCount.textContent = `Words: ${words}`;
+
+
+            charCount.classList.add('count-update');
+            wordCount.classList.add('count-update');
+
+
+            setTimeout(() => {
+                charCount.classList.remove('count-update');
+                wordCount.classList.remove('count-update');
+            }, 300);
+        }
+
+
+        textInput.addEventListener('input', updateCounts);
+
+       
+        updateCounts();
+    </script>
+</body>
+</html>
