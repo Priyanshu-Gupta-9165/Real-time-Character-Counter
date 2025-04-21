@@ -1,71 +1,68 @@
+/* Basic reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
 }
 
 .container {
-    width: 90%;
     max-width: 600px;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
-    color: #2d3748;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-.counter-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
 }
 
 textarea {
     width: 100%;
     height: 200px;
-    padding: 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 16px;
     resize: none;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
 }
 
-textarea:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
-.counter-info {
+.counters {
     display: flex;
     justify-content: space-around;
-    padding: 1rem;
-    background: #f7fafc;
-    border-radius: 8px;
 }
 
-.counter {
+.counter-box {
     text-align: center;
-    color: #4a5568;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    width: 45%;
 }
 
-.counter span {
-    font-size: 1.5rem;
+h3 {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#char-count, #word-count {
+    font-size: 24px;
     font-weight: bold;
-    color: #667eea;
+    color: #4CAF50;
 } 
