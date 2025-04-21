@@ -19,60 +19,14 @@ window.onload = function() {
     function createOdometerAnimation(element, newValue, prevValue) {
         if (newValue === prevValue) return;
         
-        // For small numbers, just update the text directly
-        if (newValue < 10) {
-            element.textContent = newValue;
-            return;
-        }
+        // For simplicity, just update the text directly for now
+        // We'll implement a more complex animation later if needed
+        element.textContent = newValue;
         
-        // Convert numbers to strings and pad with zeros if needed
-        var oldStr = prevValue.toString();
-        var newStr = newValue.toString();
-        
-        // Make sure both strings have the same length
-        while (oldStr.length < newStr.length) {
-            oldStr = '0' + oldStr;
-        }
-        while (newStr.length < oldStr.length) {
-            newStr = '0' + newStr;
-        }
-        
-        // Clear the element
-        element.innerHTML = '';
-        
-        // Create odometer digits for each position
-        for (var i = 0; i < newStr.length; i++) {
-            var digitContainer = document.createElement('div');
-            digitContainer.className = 'odometer-digit';
-            
-            var digitsWrapper = document.createElement('div');
-            digitsWrapper.className = 'odometer-digits';
-            
-            // Calculate how many steps to move
-            var oldDigit = parseInt(oldStr[i]);
-            var newDigit = parseInt(newStr[i]);
-            var steps = (newDigit - oldDigit + 10) % 10;
-            
-            // Create the digit elements
-            for (var j = 0; j < 10; j++) {
-                var digitElement = document.createElement('div');
-                digitElement.className = 'odometer-digit-inner';
-                digitElement.textContent = j;
-                digitsWrapper.appendChild(digitElement);
-            }
-            
-            // Set the initial position
-            digitsWrapper.style.transform = 'translateY(' + (-oldDigit * 50) + 'px)';
-            
-            // Add to the container
-            digitContainer.appendChild(digitsWrapper);
-            element.appendChild(digitContainer);
-            
-            // Animate to the new position after a small delay
-            setTimeout(function(wrapper, steps, oldDigit) {
-                wrapper.style.transform = 'translateY(' + (-((oldDigit + steps) % 10) * 50) + 'px)';
-            }, 50 * i, digitsWrapper, steps, oldDigit);
-        }
+        // Add a simple animation class
+        element.classList.remove('number-change');
+        void element.offsetWidth; // Force reflow
+        element.classList.add('number-change');
     }
     
     // Function to count characters and words
