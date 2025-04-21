@@ -8,6 +8,9 @@ window.onload = function() {
     var wordBox = document.getElementById('word-box');
     var clearBtn = document.getElementById('clear-btn');
     
+    // Auto-focus the textarea when page loads
+    textInput.focus();
+    
     // Store previous values for comparison
     var prevCharCount = 0;
     var prevWordCount = 0;
@@ -15,6 +18,12 @@ window.onload = function() {
     // Function to create odometer-like animation
     function createOdometerAnimation(element, newValue, prevValue) {
         if (newValue === prevValue) return;
+        
+        // For small numbers, just update the text directly
+        if (newValue < 10) {
+            element.textContent = newValue;
+            return;
+        }
         
         // Convert numbers to strings and pad with zeros if needed
         var oldStr = prevValue.toString();
@@ -102,6 +111,7 @@ window.onload = function() {
     function clearText() {
         textInput.value = '';
         countText();
+        textInput.focus(); // Focus back on textarea after clearing
     }
     
     // Add event listener to update counts when user types
